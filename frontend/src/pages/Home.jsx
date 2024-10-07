@@ -16,6 +16,7 @@ import {
   ToggleButton,
   Snackbar,
   Alert,
+  Paper,
 } from "@mui/material";
 import Loader from "../components/Loader";
 
@@ -189,7 +190,35 @@ const Home = ({ isGridLayout }) => {
                 </Grid>
               ))
             ) : (
-              <Typography>No projects found</Typography>
+              <Paper
+              elevation={3}
+              sx={{
+                padding: '10rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '200px',
+                textAlign: 'center',
+                borderRadius:'16px',
+                margin: '0px auto'
+              }}
+            >
+             
+              <Button
+              onClick={() => setIsCreateModelShow(true)}
+                variant="contained"
+                color="primary"
+                sx={{
+                  backgroundColor: '#1976d2',
+                  '&:hover': {
+                    backgroundColor: '#115293',
+                  },
+                }}
+              >
+                Create your first project
+              </Button>
+            </Paper>
             )}
           </Grid>
         ) : (
@@ -199,7 +228,38 @@ const Home = ({ isGridLayout }) => {
                 <ListCard key={index} item={item} />
               ))
             ) : (
-              <Typography>No projects found</Typography>
+              <Paper
+      elevation={3}
+      sx={{
+        padding: '10rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '200px',
+        textAlign: 'center',
+        borderRadius:'16px',
+        margin: '0px auto'
+
+      }}
+    >
+      <Typography variant="h6" gutterBottom>
+        Create your first project
+      </Typography>
+      <Button
+      onClick={() => setIsCreateModelShow(true)}
+        variant="contained"
+        color="primary"
+        sx={{
+          backgroundColor: '#1976d2',
+          '&:hover': {
+            backgroundColor: '#115293',
+          },
+        }}
+      >
+        Create your first project
+      </Button>
+    </Paper>
             )}
           </Box>
         )}
