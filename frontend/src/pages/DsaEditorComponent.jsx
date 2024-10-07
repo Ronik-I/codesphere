@@ -306,7 +306,7 @@ const Judge0Component = () => {
         </Grid>
 
         {/* Code Editor */}
-        <Grid item xs={7} md={7}>
+        <Grid item xs={12} md={7}>
           <Paper elevation={3} sx={{ padding: "16px" }}>
             <Typography variant="h6" gutterBottom>
               <CodeIcon sx={{ marginRight: "8px" }} />
@@ -323,7 +323,7 @@ const Judge0Component = () => {
         </Grid>
 
         {/* Input Field */}
-        <Grid item container xs={5} md={5} direction="column">
+        <Grid item container xs={12} md={5} direction="column">
           <Grid item xs={6} md={6}>
             <Paper elevation={3} sx={{ padding: "16px" }}>
               <Typography variant="h6" gutterBottom>
@@ -341,7 +341,7 @@ const Judge0Component = () => {
             </Paper>
           </Grid>
 
-          <Grid item xs={6} md={5.5}>
+          <Grid item xs={12} md={5.5}>
             <Paper elevation={3} sx={{ padding: "16px", height: "100%" }}>
               <Typography variant="h6" gutterBottom>
                 <OutputIcon sx={{ marginRight: "8px" }} />

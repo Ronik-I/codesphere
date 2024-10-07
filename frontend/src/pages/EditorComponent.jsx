@@ -4,8 +4,9 @@ import { MdLightMode } from 'react-icons/md';
 import { AiOutlineExpandAlt } from "react-icons/ai";
 import { api_base_url } from '../helper';
 import { useParams } from 'react-router-dom';
-import { IconButton, Button, Paper, Box, Typography, Tabs, Tab } from '@mui/material';
+import { IconButton, Button, Paper, Box, Typography, Tabs, Tab, Grid } from '@mui/material';
 import axios from 'axios';
+import { useTheme, useMediaQuery } from '@mui/material';
 
 const EditorComponent = () => {
   const [tab, setTab] = useState("html");
@@ -17,7 +18,9 @@ const EditorComponent = () => {
   const [projectTitle, setProjectTitle] = useState('');
 
   const { projectID } = useParams();
-
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md')); // Adjust based on your breakpoints
+  
   const changeTheme = () => {
     const body = document.body;
     if (isLightMode) {
@@ -152,73 +155,83 @@ const EditorComponent = () => {
       </Box>
 
       {/* Main content area */}
-      <Box display="flex" >
+     
+      <Grid
+        container
+        spacing={2}
+        direction={isSmallScreen ? 'column' : 'row'} // Stack top-bottom for small screens, side-by-side for larger screens
+      >
         {/* Left side editor with tabs */}
-        <Paper elevation={2} sx={{ width: isExpanded ? '100%' : '50%', marginRight: 2 }}>
-          <Tabs
-            value={tab}
-            onChange={handleTabChange}
-            variant="fullWidth"
-            textColor="primary"
-            indicatorColor="primary"
-            sx={{ minHeight: "40px", height: "40px", padding: 0 }}
-          >
-            <Tab label="HTML" value="html" />
-            <Tab label="CSS" value="css" />
-            <Tab label="JavaScript" value="js" />
-          </Tabs>
+        <Grid item xs={12} md={isExpanded ? 12 : 6}>
+          <Paper elevation={2} sx={{ marginRight: isSmallScreen ? 0 : 2, height: '100%' }}>
+            <Tabs
+              value={tab}
+              onChange={handleTabChange}
+              variant="fullWidth"
+              textColor="primary"
+              indicatorColor="primary"
+              sx={{ minHeight: "40px", height: "40px", padding: 0 }}
+            >
+              <Tab label="HTML" value="html" />
+              <Tab label="CSS" value="css" />
+              <Tab label="JavaScript" value="js" />
+            </Tabs>
 
-          {/* Monaco Editor */}
-          <Box>
-            {tab === "html" ? (
-              <Editor
-                height="80vh"
-                theme={isLightMode ? "vs-light" : "vs-dark"}
-                language="html"
-                value={htmlCode}
-                onChange={(value) => {
-                  setHtmlCode(value || "");
-                  run();
-                }}
-              />
-            ) : tab === "css" ? (
-              <Editor
-                height="80vh"
-                theme={isLightMode ? "vs-light" : "vs-dark"}
-                language="css"
-                value={cssCode}
-                onChange={(value) => {
-                  setCssCode(value || "");
-                  run();
-                }}
-              />
-            ) : (
-              <Editor
-                height="80vh"
-                theme={isLightMode ? "vs-light" : "vs-dark"}
-                language="javascript"
-                value={jsCode}
-                onChange={(value) => {
-                  setJsCode(value || "");
-                  run();
-                }}
-              />
-            )}
-          </Box>
-        </Paper>
+            {/* Monaco Editor */}
+            <Box>
+              {tab === "html" ? (
+                <Editor
+                  height={isSmallScreen ? "60vh" : "80vh"} // Adjust height for small screens
+                  theme={isLightMode ? "vs-light" : "vs-dark"}
+                  language="html"
+                  value={htmlCode}
+                  onChange={(value) => {
+                    setHtmlCode(value || "");
+                    run();
+                  }}
+                />
+              ) : tab === "css" ? (
+                <Editor
+                  height={isSmallScreen ? "60vh" : "80vh"} // Adjust height for small screens
+                  theme={isLightMode ? "vs-light" : "vs-dark"}
+                  language="css"
+                  value={cssCode}
+                  onChange={(value) => {
+                    setCssCode(value || "");
+                    run();
+                  }}
+                />
+              ) : (
+                <Editor
+                  height={isSmallScreen ? "40vh" : "80vh"} // Adjust height for small screens
+                  theme={isLightMode ? "vs-light" : "vs-dark"}
+                  language="javascript"
+                  value={jsCode}
+                  onChange={(value) => {
+                    setJsCode(value || "");
+                    run();
+                  }}
+                />
+              )}
+            </Box>
+          </Paper>
+        </Grid>
 
         {/* Right side output iframe */}
         {!isExpanded && (
-          <Paper elevation={2} sx={{ width: '50%' }}>
-            <iframe
-              className='bg-white'
-              id="iframe"
-              style={{ width: '100%', height: '100%', border: 'none' }}
-              title="output"
-            />
-          </Paper>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={2} sx={{ height: '100%' }}>
+              <iframe
+                className="bg-white"
+                id="iframe"
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                title="output"
+              />
+            </Paper>
+          </Grid>
         )}
-      </Box>
+      </Grid>
+    
     </>
   );
 };
