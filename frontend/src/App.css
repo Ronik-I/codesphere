@@ -1,0 +1,124 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #0D0C0C;
+  color: #fff;
+  overflow-x: hidden;
+}
+html{
+  overflow-x: hidden;
+}
+.inputBox{
+  width: 100%;
+  background-color: #141414;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.inputBox input{
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  font-size: 16px;
+}
+
+.btnBlue{
+  background-color: #00AEEF;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+.btnBlue:hover{
+  background-color: #0086b3;
+}
+.grid{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px;
+}
+
+.lightMode{
+  background-color: #fff !important;
+  color: #000 !important;
+};
+
+
+.lightMode .navbar{
+  background-color: #fff;
+}
+
+.lightMode .tabs{
+  background-color: #f7f7f7;
+}
+.lightMode .tabs .tab{
+  background-color: #c2c1c1;
+  color: #000;
+}
+
+.lightMode .btn{
+  background-color: #C2C1C1;
+  color: #000;
+}
+
+.nav-link {
+  color: white; /* Default text color */
+  text-decoration: none;
+  padding: 10px 20px;
+  position: relative; 
+  transition: color 0.3s ease; /* Smooth color transition */
+  display: inline-block; /* Allows padding and hover effect */
+}
+
+.nav-link:hover {
+  color: #00bfff; /* Neon blue text color on hover */
+  text-shadow: 
+    0 0 5px #00bfff, /* Soft glow */
+    0 0 10px #00bfff, /* Medium glow */
+    0 0 15px #00bfff, /* Strong glow */
+    0 0 20px rgba(0, 191, 255, 0.5), /* Light glow */
+    0 0 30px rgba(0, 191, 255, 0.3), /* Distant glow */
+    0 0 40px rgba(0, 191, 255, 0.2); /* Faint glow */
+}
+.pulsating-card {
+  width: 250px;
+  height: 200px;
+  background-color: #141414; /* Default background color */
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  position: relative; /* Necessary for absolute positioning of the pseudo-element */
+  border-radius: 100px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.pulsating-card:hover {
+   /* Change background on hover */
+  animation: pulse 1.5s infinite; /* Add pulsating animation */
+}
+
+/* Define the pulse animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 204, 255, 0.4); /* Start with no shadow */
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.8), 0 0 40px rgba(0, 204, 255, 0.6); /* Glow effect */
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(0, 204, 255, 0.4); /* End with no shadow */
+  }
+}
